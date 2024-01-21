@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const port = 4000
 const secretKey = "secretKey";
 const jwt = require('jsonwebtoken');
-const database_file = require('./database.js');
+const database_file = require('./database.js');             
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -128,9 +128,9 @@ app.get('/user/:userid/:filename', (req, res) => {
     .catch((error) => {
       res.status(404).json({ error: error.message });
     });
-});
+});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-app.get('/country', (req, res) => {
+app.get('/country', (req, res) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
   database_file.getCountry()
     .then(response => {
       res.status(200).send(response);

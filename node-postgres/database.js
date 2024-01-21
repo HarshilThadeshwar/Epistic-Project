@@ -8,26 +8,7 @@ const pool = new Pool({
 });
 const path = require("path");
 
-const createToken = (body) => {
-  return new Promise(function (resolve, reject) {
-    const { username, password } = body;
-    pool.query(
-      "SELECT * FROM admin WHERE username = $1 AND password = $2",
-      [username, password],
-      (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          if (results.rows.length === 1) {
-            resolve(results.rows[0]);
-          } else {
-            resolve(null);
-          }
-        }
-      }
-    );
-  });
-};
+
 
 const getCountry = () => {
   return new Promise(function (resolve, reject) {
@@ -166,6 +147,29 @@ const createCity = (body) => {
           reject(error);
         }
         resolve(results.rows[0]);
+      }
+    );
+  });
+};
+
+const createToken = (body) => {
+  return new Promise(function (resolve, reject) {
+    const { username, password } = body;
+    pool.query(
+      "SELECT * FROM admin WHERE username = $1 AND password = $2",
+      [username, password],
+      (error, results) => {
+        if (error) {
+
+          
+          reject(error);
+        } else {
+          if (results.rows.length === 1) {
+            resolve(results.rows[0]);
+          } else {
+            resolve(null);
+          }
+        }
       }
     );
   });
@@ -659,6 +663,8 @@ const DownloadResume = (userId, filename) => {
     );
   });
 };
+
+
 
 module.exports = {
   getCountry,
